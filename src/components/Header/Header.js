@@ -29,16 +29,39 @@ const Header = () => {
         </Row>
       </SuperHeader>
       <MainHeader>
+        <ActionGroup>
+          <button>
+            <Search size={24} />
+          </button>
+          <button>
+            <Menu size={24} />
+          </button>
+        </ActionGroup>
         <Logo />
+        <SubscribeContainer>
+          <Button>Subscribe</Button>
+          <Link>Already a member?</Link>
+        </SubscribeContainer>
       </MainHeader>
     </header>
   );
 };
 
+
+const SubscribeContainer = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+`
+
 const SuperHeader = styled.div`
   padding: 16px 0;
   background: var(--color-gray-900);
   color: white;
+
+  @media ${QUERIES.laptopAndUp} {
+    display: none;
+  }
 `;
 
 const Row = styled(MaxWidthWrapper)`
@@ -59,12 +82,40 @@ const ActionGroup = styled.div`
   }
 `;
 
+const Link = styled.a`
+  cursor: pointer;
+  font-family: 'Crimson Pro';
+  font-style: italic;
+  color: var(--color-gray-900);
+  text-decoration: underline;
+`
+
 const MainHeader = styled(MaxWidthWrapper)`
   display: flex;
   align-items: center;
   justify-content: center;
   margin-top: 32px;
   margin-bottom: 48px;
+
+  & ${ActionGroup} {
+    display: none;
+  }
+
+  & ${SubscribeContainer} {
+    display: none;
+  }
+
+  @media ${QUERIES.laptopAndUp} {
+    justify-content: space-between;
+
+    & ${ActionGroup} {
+      display: flex;
+    }
+
+    & ${SubscribeContainer} {
+      display: flex;
+    }
+  }
 `;
 
 export default Header;

@@ -1,22 +1,52 @@
 import React from 'react';
 import styled from 'styled-components/macro';
+import { QUERIES } from '../../constants';
 
 const OpinionStory = ({ id, title, author, avatar }) => {
   return (
-    <a href={`/story/${id}`}>
+    <StoryWrapper href={`/story/${id}`}>
       <Wrapper>
         <Avatar alt="" src={avatar} />
-        <div>
+        <OpinionHeader>
           <AuthorName>{author}</AuthorName>
           <ArticleTitle>{title}</ArticleTitle>
-        </div>
+        </OpinionHeader>
       </Wrapper>
-    </a>
+    </StoryWrapper>
   );
 };
 
+const StoryWrapper = styled.a`
+   background-color: var(--color-gray-100);
+
+   &:not(:last-of-type) {
+    padding-bottom: 16px;
+  }
+
+   &:not(:first-of-type) {
+    padding-top: 16px;
+  }
+`
+
+const OpinionHeader = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`
+
 const Wrapper = styled.article`
   color: var(--color-gray-900);
+  background-color: var(--color-gray-100);
+  display: flex;
+  height: 100%;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+
+  @media ${QUERIES.tabletOnly} {
+    justify-content: flex-start;
+    flex-direction: column;
+    padding: 0 16px;
+  }
 `;
 
 const Avatar = styled.img`
